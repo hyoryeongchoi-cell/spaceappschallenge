@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>NASA Weather Likelihood — Demo</title>
+    <title>NASA - Will It Rain On My Parade?</title>
     <style>
       body {
         font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
@@ -74,7 +74,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>NASA Weather Likelihood (Demo)</h1>
+      <h1>WEPI - Climate Explorer</h1> 
       <div class="meta">
         Description: Search by city name → Uses NASA POWER daily data from 2001~2024 to calculate average values for the selected month and day.
       </div>
