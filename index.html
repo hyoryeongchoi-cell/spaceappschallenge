@@ -8,43 +8,48 @@
       body {
         font-family: Inter, system-ui, Segoe UI, Roboto, 'Helvetica Neue', Arial;
         margin: 0;
-        padding: 20px;
+        padding: 40px;
         background: #f6f8fb;
         color: #0b1220;
       }
       .container {
-        max-width: 900px;
-        margin: 18px auto;
+        max-width: 1200px;
+        margin: 24px auto;
         background: #fff;
-        padding: 18px;
+        padding: 30px;
         border-radius: 10px;
         box-shadow: 0 6px 20px rgba(8, 12, 20, 0.06);
       }
       h1 {
-        margin: 0 0 12px;
-        font-size: 20px;
+        margin: 0 0 18px;
+        font-size: 28px;
+        font-weight: 700;
       }
       .row {
         display: flex;
-        gap: 10px;
+        gap: 14px;
         flex-wrap: wrap;
-        margin-bottom: 8px;
+        margin-bottom: 16px;
       }
       input,
       select,
       button {
-        padding: 8px;
-        border-radius: 8px;
+        padding: 12px 14px;
+        border-radius: 10px;
         border: 1px solid #d6dce6;
+        font-size: 16px;
+        height: 44px;
       }
       button {
         background: #0b74de;
         color: #fff;
         border: none;
         cursor: pointer;
+        font-weight: 600;
+        min-width: 120px;
       }
       .result {
-        margin-top: 14px;
+        margin-top: 24px;
       }
       pre {
         background: #fafbff;
@@ -53,7 +58,7 @@
         overflow: auto;
       }
       .meta {
-        font-size: 13px;
+        font-size: 14px;
         color: #55607a;
       }
       .spinner {
@@ -72,11 +77,15 @@
       }
       /* 이미지 스타일 */
       .image-below-meta {
-        max-width: 350px;
+        max-width: 600px;
         height: auto;
-        border-radius: 8px;
-        margin: 10px auto 0;
+        border-radius: 10px;
+        margin: 16px auto 0;
         display: block;
+      }
+      h3 {
+        margin: 8px 0 12px;
+        font-size: 22px;
       }
     </style>
   </head>
@@ -85,10 +94,10 @@
       <h1>WEPI - Climate Explorer</h1> 
       <div class="meta" id="metaText">
         Search by city name → Uses NASA POWER daily data from 01/01/2001 ~ 12/31/2024 to calculate average values for the selected month and day.
-        <br>Parameters: <a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener noreferrer">https://power.larc.nasa.gov/data-access-viewer/</a><br>
-        ☀️ Temperature at 2 Meters<br>
-        🌧️ Precipitation Corrected<br>
-        💨 Wind Speed at 2 Meters<br>
+        <br />Parameters: <a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener noreferrer">https://power.larc.nasa.gov/data-access-viewer/</a><br />
+        ☀️ Temperature at 2 Meters<br />
+        🌧️ Precipitation Corrected<br />
+        💨 Wind Speed at 2 Meters<br />
         💦 Relative Humidity at 2 Meters
       </div>
 
@@ -98,7 +107,7 @@
         class="image-below-meta"
       />
 
-      <div style="height: 12px"></div>
+      <div style="height: 20px"></div>
 
       <div class="row">
         <input
