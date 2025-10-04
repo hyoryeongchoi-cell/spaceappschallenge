@@ -76,7 +76,12 @@
     <div class="container">
       <h1>WEPI - Climate Explorer</h1> 
       <div class="meta">
-        Description: Search by city name → Uses NASA POWER daily data from 2001~2024 to calculate average values for the selected month and day.
+        Search by city name → Uses NASA POWER daily data from 01/01/2001 ~ 12/31/2024 to calculate average values for the selected month and day.
+        <br>Parameters: <br>
+        ☀️ Temperature at 2 Meters<br>
+        🌧️ Precipitation Corrected<br>
+        💨 Wind Speed at 2 Meters<br>
+        💦 Relative Humidity at 2 Meters
       </div>
 
       <div style="height: 12px"></div>
@@ -119,7 +124,7 @@
 
       <div class="row">
         <div style="flex: 2; min-width: 320px">
-          <h3 style="margin: 6px 0">Results</h3>
+          <h3 style="margin: 6px 0">Results:</h3>
           <div id="summaryText">Summary will appear here after search.</div>
         </div>
       </div>
@@ -153,7 +158,7 @@
 
           const start = '20010101';
           const end = '20241231';
-          const params = ['T2M', 'PRECTOTCORR', 'WS2M', 'CLOUD_AMT_DAY', 'RH2M'].join(',');
+          const params = ['T2M', 'PRECTOTCORR', 'WS2M', 'RH2M'].join(',');
           const apiUrl = `https://power.larc.nasa.gov/api/temporal/daily/point?start=${start}&end=${end}&latitude=${lat}&longitude=${lon}&parameters=${params}&format=JSON&community=AG`;
           const apiRes = await fetch(apiUrl);
           if (!apiRes.ok) throw new Error('POWER API error: ' + apiRes.status);
@@ -166,7 +171,7 @@
           if (!raw) throw new Error('Parameters not found in POWER results.');
 
           const yearsData = [];
-          const pars = ['T2M', 'PRECTOTCORR', 'WS2M', 'CLOUD_AMT_DAY', 'RH2M'];
+          const pars = ['T2M', 'PRECTOTCORR', 'WS2M', 'RH2M'];
           const t2mObj = raw.T2M || {};
           for (const dateKey in t2mObj) {
             if (dateKey.length >= 8) {
@@ -195,7 +200,6 @@
           const T2M_arr = yearsData.map(r => r.T2M);
           const PRE_arr = yearsData.map(r => r.PRECTOTCORR);
           const WS_arr = yearsData.map(r => r.WS2M);
-          const CLD_arr = yearsData.map(r => r.CLOUD_AMT_DAY);
           const RH_arr = yearsData.map(r => r.RH2M);
 
           const stats = {
@@ -203,13 +207,12 @@
             T2M_mean: mean(T2M_arr),
             PRE_mean: mean(PRE_arr),
             WS_mean: mean(WS_arr),
-            CLD_mean: mean(CLD_arr),
             RH_mean: mean(RH_arr),
           };
 
           const summaryEl = document.getElementById('summaryText');
           summaryEl.innerHTML = `
-            <strong>${city}</strong> (Based on the data from 2001~2024)<br>
+            <strong>${city}</strong> <small style="font-size: 0.8em; color: #555;">(Based on the data from 2001~2024)</small><br>
             • Average Temperature: ${
               isFinite(stats.T2M_mean) ? stats.T2M_mean.toFixed(1) + ' °C' : 'No data'
             }<br>
@@ -218,9 +221,6 @@
             }<br>
             • Average Wind Speed: ${
               isFinite(stats.WS_mean) ? stats.WS_mean.toFixed(2) + ' m/s' : 'No data'
-            }<br>
-            • Average Cloud Amount: ${
-              isFinite(stats.CLD_mean) ? stats.CLD_mean.toFixed(1) + ' %' : 'No data'
             }<br>
             • Average Relative Humidity: ${
               isFinite(stats.RH_mean) ? stats.RH_mean.toFixed(1) + ' %' : 'No data'
