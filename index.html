@@ -70,12 +70,20 @@
           transform: rotate(360deg);
         }
       }
+      /* 이미지 스타일 */
+      .image-below-meta {
+        max-width: 350px;
+        height: auto;
+        border-radius: 8px;
+        margin: 10px auto 0;
+        display: block;
+      }
     </style>
   </head>
   <body>
     <div class="container">
       <h1>WEPI - Climate Explorer</h1> 
-      <div class="meta">
+      <div class="meta" id="metaText">
         Search by city name → Uses NASA POWER daily data from 01/01/2001 ~ 12/31/2024 to calculate average values for the selected month and day.
         <br>Parameters: <a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener noreferrer">https://power.larc.nasa.gov/data-access-viewer/</a><br>
         ☀️ Temperature at 2 Meters<br>
@@ -83,6 +91,12 @@
         💨 Wind Speed at 2 Meters<br>
         💦 Relative Humidity at 2 Meters
       </div>
+
+      <img
+        src="https://raw.githubusercontent.com/hyoryeongchoi-cell/spaceappschallenge.github.io/616fa97473beee86b604a34821a0ecaf5a89d072/worldMap.png"
+        alt="World Map"
+        class="image-below-meta"
+      />
 
       <div style="height: 12px"></div>
 
@@ -128,11 +142,6 @@
           <div id="summaryText">Summary will appear here after search.</div>
         </div>
       </div>
-
-      <div style="text-align:center; margin-top: 20px;">
-        <img src="worldMap.png" alt="World Map" style="max-width: 100%; height: auto; border-radius: 8px;" />
-      </div>
-
     </div>
 
     <script>
