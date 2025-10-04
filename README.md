@@ -140,7 +140,6 @@
         showBusy(true);
 
         try {
-          // 1. Geocode (Nominatim)
           const nomUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&limit=1`;
           const geoRes = await fetch(nomUrl);
           const geoJson = await geoRes.json();
@@ -152,7 +151,6 @@
           const lat = parseFloat(geoJson[0].lat);
           const lon = parseFloat(geoJson[0].lon);
 
-          // 2. NASA POWER call (Daily) for 2001-01-01 to 2024-12-31
           const start = '20010101';
           const end = '20241231';
           const params = ['T2M', 'PRECTOTCORR', 'WS2M', 'CLOUD_AMT_DAY', 'RH2M'].join(',');
@@ -161,10 +159,9 @@
           if (!apiRes.ok) throw new Error('POWER API error: ' + apiRes.status);
           const powerJson = await apiRes.json();
 
-          // 3. Parse daily series
-          const month = document.getElementById('month').value; // '01'
-          const day = document.getElementById('day').value; // '01'..'31'
-          const targetMD = month + day; // e.g. '0704'
+          const month = document.getElementById('month').value;
+          const day = document.getElementById('day').value;
+          const targetMD = month + day;
           const raw = powerJson.properties && powerJson.properties.parameter;
           if (!raw) throw new Error('Parameters not found in POWER results.');
 
@@ -190,7 +187,6 @@
             return;
           }
 
-          // 4. Compute stats
           function mean(arr) {
             const valid = arr.filter(v => v !== null && !isNaN(v));
             return valid.reduce((a, b) => a + b, 0) / Math.max(1, valid.length);
@@ -211,7 +207,6 @@
             RH_mean: mean(RH_arr),
           };
 
-          // 5. Render summary text with updated years range (2001–2024)
           const summaryEl = document.getElementById('summaryText');
           summaryEl.innerHTML = `
             <strong>${city}</strong> (2001~2024)<br>
