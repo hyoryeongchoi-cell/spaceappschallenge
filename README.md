@@ -128,6 +128,12 @@
           <div id="summaryText">Summary will appear here after search.</div>
         </div>
       </div>
+
+      <!-- 여기에 이미지 넣기 -->
+      <div style="text-align:center; margin-top: 20px;">
+        <img src="worldMap.png" alt="World Map" style="max-width: 100%; height: auto; border-radius: 8px;" />
+      </div>
+
     </div>
 
     <script>
