@@ -209,7 +209,7 @@
 
           const summaryEl = document.getElementById('summaryText');
           summaryEl.innerHTML = `
-            <strong>${city}</strong> (2001~2024)<br>
+            <strong>${city}</strong> (Based on the data from 2001~2024)<br>
             • Average Temperature: ${
               isFinite(stats.T2M_mean) ? stats.T2M_mean.toFixed(1) + ' °C' : 'No data'
             }<br>
