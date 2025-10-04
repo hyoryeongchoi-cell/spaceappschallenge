@@ -77,7 +77,7 @@
       <h1>WEPI - Climate Explorer</h1> 
       <div class="meta">
         Search by city name → Uses NASA POWER daily data from 01/01/2001 ~ 12/31/2024 to calculate average values for the selected month and day.
-        <br>Parameters: <br>
+        <br>Parameters: <a href="https://power.larc.nasa.gov/data-access-viewer/" target="_blank" rel="noopener noreferrer">https://power.larc.nasa.gov/data-access-viewer/</a><br>
         ☀️ Temperature at 2 Meters<br>
         🌧️ Precipitation Corrected<br>
         💨 Wind Speed at 2 Meters<br>
